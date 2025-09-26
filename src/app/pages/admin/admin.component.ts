@@ -3,6 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from '../../store/store';
 import { CommonModule } from '@angular/common';
+import { selectCount } from '../../store/counter.selector';
 
 @Component({
   selector: 'app-admin',
@@ -14,6 +15,6 @@ export class AdminComponent {
   count!: Observable<number>;
 
   constructor(private store: Store<AppState>) {
-    this.count = this.store.pipe(select('count'));
+    this.count = this.store.pipe(select(selectCount));
   }
 }

@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { AppState } from './store/store';
 import { Observable } from 'rxjs';
 import { decreament, increament } from './store/counter.action';
 import { CommonModule } from '@angular/common';
-import { AdminComponent } from './pages/admin/admin.component';
+import { selectCount } from './store/counter.selector';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, AdminComponent],
+  imports: [RouterOutlet, CommonModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -18,7 +18,8 @@ export class AppComponent {
   counter$!: Observable<number>;
 
   constructor(private store: Store<AppState>) {
-    this.counter$ = this.store.pipe(select('count'));
+    // this.counter$ = this.store.pipe(select('count'));
+    this.counter$ = this.store.pipe(select(selectCount));
   }
 
   increament() {

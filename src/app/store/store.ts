@@ -1,3 +1,5 @@
+import { countState } from './counter.reducer';
+
 export interface AppState {
-  count: number;
+  counter: countState;
 }
